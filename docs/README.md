@@ -126,8 +126,52 @@ node -v
 ```
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass
 ```
-
 ![](images/powershell-policy-1.png)
 
   それだ！これでラボの準備が整いました。息を整えて、ラボを楽しんでください。
 
+## 3 - StepZen のセットアップ
+
+このセクションでは、StepZen の使用を開始します。StepZen CLI をインストールし、StepZen アカウントでログインします。StepZen アカウントをお持ちでない場合は、前提条件セクションの作成方法を確認してください。
+
+StepZen を使用すると、開発者は複数のバックエンドから必要なデータを取得する単一の GraphQL API を簡単に構築してデプロイできます。StepZen CLI は、StepZen API を作成、アップロード、デプロイ、テストするための主要なツールです。StepZen CLI を使用すると、StepZen のスキーマ、構成、エンドポイントを管理できます。CLI には、ブラウザーからローカルにデプロイした API を探索およびテストできる組み込みの Schema Explorer も付属しています。StepZen CLI は npm 経由で利用できるので、インストールしましょう。
+
+
+1. 端末で以下のコマンドを実行して StepZen CLI をインストールします。
+```
+npm install -g stepzen
+```
+
+![](images/setup-sz-1.png)
+
+2. 次に、StepZenAccount でログインしましょう。ブラウザ ウィンドウに戻り、<a href="http://www.stepzen.com" target="_blank">以下の URL</a> を開き (1)、**ログイン** リンクをクリックします (2) ）。
+```
+http://www.stepzen.com
+```
+
+![](images/setup-sz-2.png)
+
+3. 個人アカウントをお持ちの場合は、ログインしてください。ラボの所有者から提供されたアカウントを使用している場合は、受け取った *ユーザー名* と *パスワード* を使用してログインします。
+
+![](images/setup-sz-3.png)
+
+4. StepZen ダッシュボード ページの左側のメニューで、**アカウント** ページ (鍵のアイコン) を開きます。
+
+![](images/setup-sz-5.png)
+
+5. ここには、CLI を使用してログインするために必要な情報がすべてあります。**アカウント**名 (1) と **管理者キー** (2)。それらは次のステップで使用します。
+
+![](images/setup-sz-6.png)
+
+6. Visual Studio Code ターミナル ウィンドウで、以下のコマンドを実行して StepZen CLI にログインし、[your_account] をアカウント ページのアカウント値 (1) に置き換えます。
+```
+stepzen ログイン -a [あなたのアカウント]
+```
+
+![](images/setup-sz-7.png)
+
+7. ここで、管理者キーを入力する必要があります。「アカウント」ページから管理者キーの値 (2) をコピーして貼り付けます。
+
+![](images/setup-sz-8.png)
+
+  これで、graphQL API を構築する準備が整いました。
