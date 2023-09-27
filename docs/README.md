@@ -186,98 +186,41 @@ GraphQL API を構築する前に、新しいディレクトリを作成し、�
 
 1. Visual Studio Code ターミナルで、以下のコマンドを実行して新しいディレクトリを作成します。
 ```
-mkdir 製品デモ
+mkdir product-demo
 ```
-
 ![](images/build-rest1-1.png)
 
 2. 新しいディレクトリに移動します。
 ```
-CD 製品デモ
+cd product-demo
 ```
-
 ![](images/build-rest1-2.png)
 
 3. 現在のディレクトリで StepZen ワークスペースを初期化する必要があります。以下のコマンドを実行します。
 ```
 stepzen init --endpoint=api/product-demo
 ```
-
 ![](images/build-rest1-3.png)
 
 4. 次に、StepZen を利用して REST エンドポイントをイントロスペクトし、GraphQL スキーマを自動生成しましょう。ここでは、事前に作成された REST API を使用します。
 ```
-stepzen importcurl "https://introspection.apis.stepzen.com/customers" --query-name "customers"
+stepzen import curl "https://introspection.apis.stepzen.com/customers" --query-name "customers"
 ```
-
 ![](images/build-rest1-4.png)
 
 5. 成功しました。最初の GraphQL API が作成されました。graphQL スキーマを調べてみましょう。Visual Studio Code で、**エクスプローラー** アイコン (1) をクリックし、**フォルダーを開く** (2) をクリックします。
-
 ![](images/build-rest1-5.png)
 
 6. 新しく作成した **product-demo** フォルダー (1) を選択し、**フォルダーの選択** をクリックします (2)。
-
 ![](images/build-rest1-6.png)
 
 7. 必要に応じて、[**はい、著者を信頼します**] ボタンをクリックします。
-
 ![](images/build-rest1-7.png)
 
 8. GraphQL スキーマを確認するには、**curl** フォルダーを開き、**index.graphql** ファイルを選択します (1)。.graphQL ファイル (2) を探索して確認してください。
-
 ![](images/build-rest1-8.png)
 
 9. 必要に応じて、[**表示 > ターミナル**] をクリックしてターミナル ウィンドウを再度表示します。
-
 ![](images/build-rest1-9.png)
 
   この GraphQL はまだデプロイしません。その前に、別の REST エンドポイントをインポートしましょう。
-
-
-## 5 - GraphQL API に新しい REST API を追加する
-
-このセクションでは、別のエンドポイントをインポートします。やりましょう！
-
-1. 以下のコマンドを実行して、別の REST API をインポートします。
-```
-stepzen importcurl "https://introspection.apis.stepzen.com/orders" --query-name "orders" --query-type "Order"
-```
-
-![](images/build-rest2-1.png)
-
-2. 新しいgraphQLスキーマを確認するには、**curl-01**フォルダーを開き、新しい**index.graphql**ファイルを開きます(1)。新しいスキーマ (2) をぜひ試してみてください。
-
-![](images/build-rest2-2.png)
-
-3. 3 番目のスキーマである **product-demo** フォルダー内の **index.graphql** ファイルを開き (1)、このスキーマが他の 2 つのスキーマを参照していることを確認します (2)。
-
-![](images/build-rest2-3.png)
-
-4. これで、以下のコマンドを実行してエンドポイントを初期化できるようになります。
-```
-ステップゼンスタート
-```
-
-![](images/build-rest2-4.png)
-
-このコマンドは 3 つのことを行います
-  - 現在のディレクトリ (または --dir フラグで指定されたディレクトリ) 内のコードを StepZen 上の指定されたエンドポイントにデプロイします。
-  - ディレクトリの変更を監視し、指定されたエンドポイントに自動的に展開します。
-  - StepZen の Schema Explorer と URL を共有すると、利用可能なクエリとタイプを調べたり、StepZen で実行されている API をクエリしたりすることで API をテストできます。
-
-![](images/build-rest2-4-2.png)
-
-5. StepZen ダッシュボードは、GraphQL API をテストするためのプレイグラウンドを提供します。それを開いて、GraphQL API を調べてみましょう。ターミナル ページを下にスクロールして、API のダッシュボード URL を確認します。それをコピーしてブラウザウィンドウに貼り付けます。
-
-![](images/build-rest2-5.png)
-
-6. StepZen Dahsboard では、さまざまなクエリを操作できます。[**クエリの実行**] ボタン (1) をクリックして注文クエリをテストします。結果データ(2)を確認します。
-
-![](images/build-rest2-6.png)
-
-7. ビルダー セクション (1) を試して、さまざまな値のクエリを作成してください。たとえば、注文クエリを削除し、いくつかのフィールドを含む顧客クエリを作成します (2)。再度クエリを実行し(3)、結果データを確認します(4)。
-
-![](images/build-rest2-7.png)
-
-  これらの結果により、2 つの異なる REST API からのデータを消費しています。また、さまざまな種類のデータ ソースの API を使用してそれを行うこともできます。次のセクションでは、MySQL データベースのデータを検査します。
