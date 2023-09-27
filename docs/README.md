@@ -23,6 +23,7 @@ API Connect 管理は、新しい GraphQL API と既存の REST API を統合す
 
 始めましょう！
 
+***
 
 ## 前提条件
 
@@ -30,6 +31,7 @@ IBM API Connect 環境が必要です。このラボの一環として、AWS で
 
 StepZen アカウントが必要です。StepZen は、開発者が GraphQL API を構築する簡単な方法を提供します。StepZen は宣言型プログラミング アプローチ (HOW を明示的に指定せずに、プログラムが何を行うかを記述する) を採用しており、その結果、コードがより小さく直感的になり、実行時のパフォーマンスが向上し、価値実現までの時間が短縮されます。StepZen は柔軟性が非常に高いように設計されています。他の API アプローチと互換性があり、サービスとして (SaaS) で利用できるほか、プライベート クラウドやオンプレミス データ センターでの展開もサポートしています。アカウントをお持ちでない場合は、<a href="https://stepzen.com/signup" target="_blank">こちら</a>から無料の StepZen アカウントを作成して開始できます (クレジット カードは必要ありません)必須）。
 
+***
 
 ## ビジネスコンテキスト
 
@@ -47,6 +49,7 @@ GraphQL には、REST API に比べて次のような特別な利点がありま
 
 ただし、この柔軟性にはレート制限に関するセキュリティ上の課題が伴います。これは、一見非常によく似た 2 つのリクエストが、非常に異なる量のデータを返す可能性があり、複数の REST API リクエストが必要であったものが、それぞれがレート制限にカウントされる可能性があるため、単一の GraphQL API リクエストしか必要としない可能性があるためです。 。したがって、取得されるデータの量を反映するレート制限制御を課すことが重要です。
 
+***
 
 ## ラボの概要
 
@@ -66,9 +69,9 @@ GraphQL には、REST API に比べて次のような特別な利点がありま
   - 10 - プロダクトを作成し、GraphQL RateLimits を適用する
   - 11 - 開発者ポータルから API を探索する
 
+***
 
 ## 1 - Node.JS をインストールする
-
 
 このセクションでは、Node.JS をマシンにインストールします。始めましょう！
 
@@ -89,13 +92,13 @@ https://nodejs.org
 
 5. 完了したら、[**完了**] をクリックします。
 
+***
 
 ## 2 - IDE をインストールする
 
 **統合開発環境 (IDE)** は、プログラムの開発、コンパイル、リンク、デバッグに必要なものがすべて含まれたソフトウェアです。さらに、IDE には通常、統合ヘルプ、名前補完、自動フォーマット、場合によってはバージョン管理システムなど、その他の便利な編集機能が多数バンドルされています。したがって、これらすべてのことを個別に実行することもできますが、IDE をインストールして、単一のインターフェイスからすべてにアクセスできるようにする方がはるかに簡単です。
 
 このラボでは、IDE を使用して GraphQL スキーマを調査します。好みの IDE を使用してください。特に希望がない場合は、以下の手順に従って Visual Studio Code をインストールできます。
-
 
 1. ブラウザで、<a href="https://code.visualstudio.com/Download" target="_blank">以下の URL</a> を開きます (1)。そして、お使いの OS に固有の VSCode ユーザー インストーラーをダウンロードします (2)。
 ```
@@ -131,6 +134,8 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass
 ![](images/powershell-policy-1.png)
 
   それだ！これでラボの準備が整いました。息を整えて、ラボを楽しんでください。
+
+***
 
 ## 3 - StepZen のセットアップ
 
@@ -170,3 +175,60 @@ stepzen ログイン -a [あなたのアカウント]
 ![](images/setup-sz-8.png)
 
   これで、graphQL API を構築する準備が整いました。
+
+  ***
+
+## 4 - REST API から GraphQL API を構築する
+
+StepZen CLI を使用すると、REST インターフェイスを備えたバックエンド用の GraphQL API を数分で作成できます。
+
+REST バックエンドがある場合、StepZen を使用して GraphQL API を作成するには 2 つの方法があります。
+  - コマンド ライン インターフェイス (CLI) コマンド stepzen importcurl を使用して、既存の REST エンドポイントを指定します。 StepZen はエンドポイントをイントロスペクトし、GraphQL スキーマを自動生成します。
+  - スキーマ コードを .graphql GraphQL スキーマ定義言語 (SDL) ファイルに記述します。強力な GraphQL ディレクティブ @rest を使用して REST エンドポイントに接続すると、わずか数行のコードで機能するスキーマが完成します。)
+
+このセクションでは、既存の REST API で stepzen importcurl を使用する方法を学習します。このコマンドは、curl リクエストを StepZen に送信し、JSON レスポンスから GraphQL タイプを解析します。
+
+GraphQL API を構築する前に、新しいディレクトリを作成し、このディレクトリ内に StepZen ワークスペースを初期化しましょう。
+
+1. Visual Studio Code ターミナルで、以下のコマンドを実行して新しいディレクトリを作成します。
+```
+mkdir product-demo
+```
+![](images/build-rest1-1.png)
+
+2. 新しいディレクトリに移動します。
+```
+cd product-demo
+```
+![](images/build-rest1-2.png)
+
+3. 現在のディレクトリで StepZen ワークスペースを初期化する必要があります。以下のコマンドを実行します。
+```
+stepzen init --endpoint=api/product-demo
+```
+![](images/build-rest1-3.png)
+
+4. 次に、StepZen を利用して REST エンドポイントをイントロスペクトし、GraphQL スキーマを自動生成しましょう。ここでは、事前に作成された REST API を使用します。
+```
+stepzen importcurl "https://introspection.apis.stepzen.com/customers" --query-name "customers"
+```
+![](images/build-rest1-4.png)
+
+5. 成功しました。最初の GraphQL API が作成されました。graphQL スキーマを調べてみましょう。Visual Studio Code で、**エクスプローラー** アイコン (1) をクリックし、**フォルダーを開く** (2) をクリックします。
+![](images/build-rest1-5.png)
+
+6. 新しく作成した **product-demo** フォルダー (1) を選択し、**フォルダーの選択** をクリックします (2)。
+![](images/build-rest1-6.png)
+
+7. 必要に応じて、[**はい、著者を信頼します**] ボタンをクリックします。
+![](images/build-rest1-7.png)
+
+8. GraphQL スキーマを確認するには、**curl** フォルダーを開き、**index.graphql** ファイルを選択します (1)。.graphQL ファイル (2) を探索して確認してください。
+![](images/build-rest1-8.png)
+
+9. 必要に応じて、[**表示 > ターミナル**] をクリックしてターミナル ウィンドウを再度表示します。
+![](images/build-rest1-9.png)
+
+  この GraphQL はまだデプロイしません。その前に、別の REST エンドポイントをインポートしましょう。
+
+***
