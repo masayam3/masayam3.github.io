@@ -591,7 +591,7 @@ API を公開したので、API コンシューマーがそれを検出して使
 17. 製品画面に戻りました。ここで API を調べてみましょう。**顧客 1.0.0 API** をクリックします。
 ![](images/apic-portal-17.png)
 
-18.*概要* ページから、OpenAPI ドキュメントをダウンロードし、API エンドポイントを取得できます。ポータルには、API を呼び出すために必要なものがすべて揃っていることに注意してください。[**試してみる**] タブを開きます。
+18. *概要* ページから、OpenAPI ドキュメントをダウンロードし、API エンドポイントを取得できます。ポータルには、API を呼び出すために必要なものがすべて揃っていることに注意してください。[**試してみる**] タブを開きます。
 ![](images/apic-portal-18.png)
 
 19. 前の手順 (1) でコピーした API キーを貼り付けます。以下の GraphQL を GraphQL エディターに貼り付けます (2)。そして、[**クエリの実行**] ボタン (3) をクリックします。
@@ -626,3 +626,10 @@ API を公開したので、API コンシューマーがそれを検出して使
 
 ***
 
+＃＃ まとめ
+
+今日やったことをまとめてみましょう。
+
+このラボでは、GraphQL ドメインでゼロからエンタープライズに移行しました。最初に、StepZen を使用して、異なるソース (REST API と MySQL) からデータを取得してフェデレーション GraphQL API を作成する方法を学びました。その後、IBM API Connect を使用して、StepZen からバックエンド GraphQL API をプロキシする GraphQL API プロキシ定義を作成する方法を学習し、リクエストによってサーバーから返されるデータ量を反映するレート制限制御を定義する方法を確認しました。 GraphQL API に。
+
+StepZen の技術情報の詳細については、この<a href="https://stepzen.com/docs" target="blank">ページ</a>を確認してください。API Connect Enterprise as a Service の詳細については、<a href="https://www.ibm.com/docs/en/api-connect/saas?topic=api-connect-enterprise-as-service』を参照してください。 -概要" target="blank">ページ</a>。
