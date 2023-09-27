@@ -144,32 +144,40 @@ StepZen を使用すると、開発者は複数のバックエンドから必要
 ```
 npm install -g stepzen
 ```
+
 ![](images/setup-sz-1.png)
 
 2. 次に、StepZenAccount でログインしましょう。ブラウザ ウィンドウに戻り、<a href="http://www.stepzen.com" target="_blank">以下の URL</a> を開き (1)、**ログイン** リンクをクリックします (2) ）。
 ```
 http://www.stepzen.com
 ```
+
 ![](images/setup-sz-2.png)
 
 3. 個人アカウントをお持ちの場合は、ログインしてください。ラボの所有者から提供されたアカウントを使用している場合は、受け取った *ユーザー名* と *パスワード* を使用してログインします。
+
 ![](images/setup-sz-3.png)
 
 4. StepZen ダッシュボード ページの左側のメニューで、**アカウント** ページ (鍵のアイコン) を開きます。
+
 ![](images/setup-sz-5.png)
 
 5. ここには、CLI を使用してログインするために必要な情報がすべてあります。**アカウント**名 (1) と **管理者キー** (2)。それらは次のステップで使用します。
+
 ![](images/setup-sz-6.png)
 
 6. Visual Studio Code ターミナル ウィンドウで、以下のコマンドを実行して StepZen CLI にログインし、[your_account] をアカウント ページのアカウント値 (1) に置き換えます。
 ```
 stepzen ログイン -a [あなたのアカウント]
 ```
+
 ![](images/setup-sz-7.png)
 
 7. ここで、管理者キーを入力する必要があります。「アカウント」ページから管理者キーの値 (2) をコピーして貼り付けます。
+
 ![](images/setup-sz-8.png)
 
+<<<<<<< HEAD
   これで、graphQL API を構築する準備が整いました。
 
   ## 4 - REST API から GraphQL API を構築する
@@ -224,3 +232,6 @@ stepzen import curl "https://introspection.apis.stepzen.com/customers" --query-n
 ![](images/build-rest1-9.png)
 
   この GraphQL はまだデプロイしません。その前に、別の REST エンドポイントをインポートしましょう。
+=======
+  これで、graphQL API を構築する準備が整いました。
+>>>>>>> parent of d163110 (Update README.md)
