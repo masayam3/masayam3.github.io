@@ -99,9 +99,10 @@ https://nodejs.org
 このラボでは、IDE を使用して GraphQL スキーマを調査します。好みの IDE を使用してください。特に希望がない場合は、以下の手順に従って Visual Studio Code をインストールできます。
 
 
-1. ブラウザで、<a href="https://code.visualstudio.com/Download" target="_blank">以下の URL</a> を開きます (1)。そして、お使いの OS に固有の VSCode ユーザー インストーラーをダウンロードします (2)。「」
-https://code.visualstudio.com/ダウンロード
-
+1. ブラウザで、<a href="https://code.visualstudio.com/Download" target="_blank">以下の URL</a> を開きます (1)。そして、お使いの OS に固有の VSCode ユーザー インストーラーをダウンロードします (2)。
+```
+https://code.visualstudio.com/Download
+```
 ![](images/install-ide-2.png)
 
 2. VSCode インストールをマシンに保存し、実行します。
@@ -120,16 +121,15 @@ https://code.visualstudio.com/ダウンロード
 ![](images/install-ide-7.png)
 
 7. 素晴らしい！Visual Studio Code の下部にターミナル ウィンドウが表示されるはずです。以下のコマンドを入力して、ノードのインストールが正常かどうかを確認します (コマンドの結果として、ノードのバージョンが表示されるはずです)。
-「」
-ノード -v
-「」
-
+```
+node -v
+```
 ![](images/install-ide-8.png)
 
 8. Windows マシンを使用している場合は、VS Code ターミナルでスクリプトを実行できるように PowerShell 実行ポリシーを変更する必要があります。実行ポリシーは、PowerShell セキュリティ戦略の一部です。実行ポリシーは、PowerShell プロファイルなどの構成ファイルをロードできるかどうか、またはスクリプトを実行できるかどうかを決定します。やりましょう！Visual Studio Code のターミナル ウィンドウで、以下のコマンドを実行します。
-「」
+```
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass
-「」
+```
 
 ![](images/powershell-policy-1.png)
 
