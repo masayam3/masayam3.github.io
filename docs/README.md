@@ -71,22 +71,18 @@ GraphQL には、REST API に比べて次のような特別な利点がありま
 このセクションでは、Node.JS をマシンにインストールします。始めましょう！
 
 1. ラボ環境を起動し、ブラウザを開きます。
-
 ![](images/install-ide-1.png)
 
 2. <a href="https://nodejs.org" target="_blank">以下の URL</a> を開きます (1)。そして、推奨されるnode.jsバージョンをダウンロードしてください。
 ```
 https://nodejs.org
 ```
-
 ![](images/install-node-1.png)
 
 3. ノードのインストールをマシンに保存し、実行します。
-
 ![](images/install-node-2.png)
 
 4. デフォルト値を受け入れ、[**インストール**] をクリックしてインストールを完了します。
-
 ![](images/install-node-3.png)
 
 5. 完了したら、[**完了**] をクリックします。
