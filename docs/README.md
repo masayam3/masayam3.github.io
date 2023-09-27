@@ -273,3 +273,24 @@ stepzen start
   これらの結果により、2 つの異なる REST API からのデータを消費しています。また、さまざまな種類のデータ ソースの API を使用してそれを行うこともできます。次のセクションでは、MySQL データベースのデータを検査します。
 
 ***
+
+## 6 - MySQL データベースから GraphQL スキーマを自動生成する
+
+SQL データベース バックエンドがある場合、StepZen を使用して GraphQL API を作成するには 2 つの方法があります。
+  - コマンドライン インターフェイス (CLI) コマンド stepzen import [mysql | mysql | mysql] を使用します。postgresql] を使用してデータベースを指定します。StepZen はデータベースをイントロスペクトし、GraphQL スキーマを自動生成します。
+  - スキーマ コードを .graphql GraphQL スキーマ定義言語 (SDL) ファイルに記述します。GraphQL ディレクティブ @dbquery を使用してデータベースに接続すると、わずか数行のコードで機能するスキーマが完成します。)
+
+このセクションでは、stepzen import mysql の使用方法を学びます。このラボでは、StepZen のサンプル MySQL データベースを使用します。
+
+1. ターミナルに戻り、現在の実行をキャンセルします (CTRL+C)。そして、以下のコマンドを実行して、データベース バックエンドからデータを接続する GraphQL API を作成します。
+```
+stepzen import mysql --db-host='db.introspection.stepzen.net' --db-database='introspection' --db-user='testUserIntrospection' --db-password='HurricaneStartingSample1934' --name=mysql
+```
+![](images/build-mysql-1.png)
+
+2. 新しいgraphQLスキーマを確認するには、**mysql**フォルダーを開き、新しい**index.graphql**ファイルを開きます(1)。新しいスキーマ (2) をぜひ試してみてください。
+![](images/build-mysql-2.png)
+
+  新しい API をデプロイする前に、次のセクションで MySQL データベースと REST API エンドポイントをマージします。
+
+***
