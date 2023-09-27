@@ -232,3 +232,44 @@ stepzen importcurl "https://introspection.apis.stepzen.com/customers" --query-na
   この GraphQL はまだデプロイしません。その前に、別の REST エンドポイントをインポートしましょう。
 
 ***
+
+## 5 - GraphQL API に新しい REST API を追加する
+
+このセクションでは、別のエンドポイントをインポートします。やりましょう！
+
+1. 以下のコマンドを実行して、別の REST API をインポートします。
+```
+stepzen import curl "https://introspection.apis.stepzen.com/orders" --query-name "orders" --query-type "Order"
+```
+![](images/build-rest2-1.png)
+
+2. 新しいgraphQLスキーマを確認するには、**curl-01**フォルダーを開き、新しい**index.graphql**ファイルを開きます(1)。新しいスキーマ (2) をぜひ試してみてください。
+![](images/build-rest2-2.png)
+
+3. 3 番目のスキーマである **product-demo** フォルダー内の **index.graphql** ファイルを開き (1)、このスキーマが他の 2 つのスキーマを参照していることを確認します (2)。
+![](images/build-rest2-3.png)
+
+4. これで、以下のコマンドを実行してエンドポイントを初期化できるようになります。
+```
+stepzen start
+```
+![](images/build-rest2-4.png)
+
+このコマンドは 3 つのことを行います
+  - 現在のディレクトリ (または --dir フラグで指定されたディレクトリ) 内のコードを StepZen 上の指定されたエンドポイントにデプロイします。
+  - ディレクトリの変更を監視し、指定されたエンドポイントに自動的に展開します。
+  - StepZen の Schema Explorer と URL を共有すると、利用可能なクエリとタイプを調べたり、StepZen で実行されている API をクエリしたりすることで API をテストできます。
+![](images/build-rest2-4-2.png)
+
+5. StepZen ダッシュボードは、GraphQL API をテストするためのプレイグラウンドを提供します。それを開いて、GraphQL API を調べてみましょう。ターミナル ページを下にスクロールして、API のダッシュボード URL を確認します。それをコピーしてブラウザウィンドウに貼り付けます。
+![](images/build-rest2-5.png)
+
+6. StepZen Dahsboard では、さまざまなクエリを操作できます。[**クエリの実行**] ボタン (1) をクリックして注文クエリをテストします。結果データ(2)を確認します。
+![](images/build-rest2-6.png)
+
+7. ビルダー セクション (1) を試して、さまざまな値のクエリを作成してください。たとえば、注文クエリを削除し、いくつかのフィールドを含む顧客クエリを作成します (2)。再度クエリを実行し(3)、結果データを確認します(4)。
+![](images/build-rest2-7.png)
+
+  これらの結果により、2 つの異なる REST API からのデータを消費しています。また、さまざまな種類のデータ ソースの API を使用してそれを行うこともできます。次のセクションでは、MySQL データベースのデータを検査します。
+
+***
