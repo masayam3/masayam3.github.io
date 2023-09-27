@@ -234,7 +234,6 @@ stepzen importcurl "https://introspection.apis.stepzen.com/customers" --query-na
 
   この GraphQL はまだデプロイしません。その前に、別の REST エンドポイントをインポートしましょう。
 
-***
 
 ## 5 - GraphQL API に新しい REST API を追加する
 
@@ -282,5 +281,3 @@ stepzen importcurl "https://introspection.apis.stepzen.com/orders" --query-name 
 ![](images/build-rest2-7.png)
 
   これらの結果により、2 つの異なる REST API からのデータを消費しています。また、さまざまな種類のデータ ソースの API を使用してそれを行うこともできます。次のセクションでは、MySQL データベースのデータを検査します。
-
-***
