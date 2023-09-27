@@ -310,7 +310,7 @@ getAddressById(id: Int!): [アドレス]
   設定: "mysql_config"
 )
 ```
-  このコードは、mySQL データベースからアドレスを選択するための getAddressById クエリを定義しています。
+このコードは、mySQL データベースからアドレスを選択するための getAddressById クエリを定義しています。
 ![](images/merge-blocks-1.png)
 
   ファイルを **保存**します ([ファイル] > [保存] または CTRL+S)。
@@ -347,5 +347,55 @@ GraphQL API を構築するときは、これらのエンドポイントの不�
 StepZen は、アカウントで使用する 2 つの異なるタイプの API キー、管理者キーと API キーを提供します。管理者キーはアカウントへの管理レベルのアクセスを提供するもので、開発時にのみ使用してください。API キーはアカウントへのアクセスがより制限されているため、運用環境で使用する必要があります。
 
 このラボでは、簡単にするために、管理者キーを使用して API にアクセスします。実際の環境では、API キーまたはフィールド ポリシーを使用して API のセキュリティを向上させる必要があります。
+
+***
+
+## 8 - APIC で GraphQL プロキシ API を作成する
+
+IBM API Connect を使用すると、バックエンド GraphQL サーバーをプロキシする GraphQL API プロキシ定義を作成できます。API Connect は、GraphQL API 定義で、GraphQL リクエストの複雑さと、レート制限にカウントされる関連コストを計算するために使用される一連の設定を構成する機能を提供することにより、GraphQL 標準を拡張します。
+
+ラボのこの部分では、API Connect 環境が必要です。必要に応じて、「前提条件」セクションを確認して、AWS トライアル アカウントで API Connect を作成する方法を確認してください。
+
+1. ラボ モニターからラボ アカウントを受け取った場合は、<a href="https://privateemail.com/" target="_blank">メールの受信トレイ</a>を開いて APIC 環境の URL を取得する必要があります。 。受信トレイ (ラボのユーザーとパスワードでログイン) で **IBM SaaS** を検索し (1)、「**API Connect トライアルの準備ができました**」電子メールを開きます (2)。
+![](images/apic-proxy-1.png)
+
+2. 次に、**トライアル版にアクセス** ボタンをクリックします。
+![](images/apic-proxy-2.png)
+
+3. APIC ユーザーとパスワード (ラボ モニターから受け取ったものと同じユーザーとパスワード、または作成したアカウントを使用) でログインします。
+![](images/apic-proxy-3.png)
+
+4. ここでは、API Connect Enterprise as a Service 環境を使用しています。API Connect Enterprise as a Service は、IBM API Connect のクラウドベースのエディションです。API Connect Enterprise as a Service を使用すると、完全な API ライフサイクル管理のための最新のユーザー エクスペリエンス、イノベーション、業界標準を使用して、クラウドで作業して API を作成、管理、保護、ソーシャル化することができます。
+
+  API Connect Enterprise as a Service は、配信モデルとして Software-as-a-Service を使用します。このモデルでは、API Connect は Amazon Web Services でホストされ、IBM によって管理されます。ソフトウェアの使用料を支払うだけで、基盤となるインフラストラクチャの所有と維持について心配する必要はありません。API Connect Enterprise as a Service では、AWS の請求書を通じて使用料金を支払います。
+
+  GraphQL プロキシ API を作成する方法を見てみましょう。**ホーム** ページ (1) で下にスクロールし、**API の開発** タイル (2) をクリックします。
+![](images/apic-proxy-4.png)
+
+5. 次に、[**追加->API**] をクリックします。
+![](images/apic-proxy-5.png)
+
+6. GraphQL プロキシを作成するには、**既存の GraphQL サービス (GraphQL プロキシ) から** (1) を選択します。既存の GraphQL サーバーを指定すると、API Connect はサービスをイントロスペクトし、GraphQL プロキシ サービスを自動的に作成します。次に、[**次へ**] (2) をクリックします。
+![](images/apic-proxy-6.png)
+
+7. 次の値を入力します。
+
+   タイトル: **お客様** (1)
+   GraphQL サーバー URL: [*StepZen ダッシュボードからコピーした API URL*] (例: https://wanaka.stepzen.net/api/product-demo/__graphql) (2)
+![](images/apic-proxy-7.png)
+
+8. このラボで前に説明したように、StepZen API は API キー アプローチを使用してエンドポイント全体へのアクセスを制御します。そのため、HTTP ヘッダーの認証ヘッダーに API キーを含める必要があります。ここでは、このプロキシ API を設定するためのイントロスペクション用に API スキーマを読み取るためにこれを含めます。このスキーマは今回のみ使用され、後で API 自体を呼び出すために保存されることはありません。やりましょう！
+
+   *HTTP ヘッダー* セクションで、**追加** (1) をクリックして *ヘッダー* として **認可** (2) を入力し、*StepZen ダッシュボード ヘッダー* セクションからコピーした *API キー値* を貼り付けます。 *値*として (3)。次に、[次へ] (4) をクリックします。
+![](images/apic-proxy-8.png)
+
+9. スキーマ検証ツールは、警告とエラーが見つかった場合に報告します。ここではスキーマ警告を無視してください。この警告は後の手順で修正されます。[パス] セクションで、使用可能なエンドポイントを **すべて** 選択し (1)、**次へ** をクリックします (2)。
+![](images/apic-proxy-9.png)
+
+10. [**クライアント ID を使用したセキュリティ保護**] と [**CORS**] の両方をオンのままにして (1)、[**次へ**] をクリックします (2)。
+![](images/apic-proxy-10.png)
+
+11. 素晴らしい！API Connect は GraphQL プロキシ API を正常に作成しました。
+![](images/apic-proxy-11.png)
 
 ***
