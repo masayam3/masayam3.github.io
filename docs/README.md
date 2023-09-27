@@ -99,31 +99,24 @@ https://nodejs.org
 このラボでは、IDE を使用して GraphQL スキーマを調査します。好みの IDE を使用してください。特に希望がない場合は、以下の手順に従って Visual Studio Code をインストールできます。
 
 
-1. ブラウザで、<a href="https://code.visualstudio.com/Download" target="_blank">以下の URL</a> を開きます (1)。そして、お使いの OS に固有の VSCode ユーザー インストーラーをダウンロードします (2)。
-「」
+1. ブラウザで、<a href="https://code.visualstudio.com/Download" target="_blank">以下の URL</a> を開きます (1)。そして、お使いの OS に固有の VSCode ユーザー インストーラーをダウンロードします (2)。「」
 https://code.visualstudio.com/ダウンロード
-「」
 
 ![](images/install-ide-2.png)
 
-2.VSCode インストールをマシンに保存し、実行します。
-
+2. VSCode インストールをマシンに保存し、実行します。
 ![](images/install-ide-3.png)
 
 3. インストール手順に従ってインストールを完了します。
-
 ![](images/install-ide-4.png)
 
 4. 最後に、**Visual Studio Code を起動する** オプションをオンにして、**完了** をクリックします。
-
 ![](images/install-ide-5.png)
 
 5. [**ようこそ**] タブを閉じます。
-
 ![](images/install-ide-6.png)
 
 6. [**ターミナル**] メニューを開き、[**新しいターミナル**] をクリックします。
-
 ![](images/install-ide-7.png)
 
 7. 素晴らしい！Visual Studio Code の下部にターミナル ウィンドウが表示されるはずです。以下のコマンドを入力して、ノードのインストールが正常かどうかを確認します (コマンドの結果として、ノードのバージョンが表示されるはずです)。
