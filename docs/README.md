@@ -75,9 +75,9 @@ GraphQL には、REST API に比べて次のような特別な利点がありま
 ![](images/install-ide-1.png)
 
 2. <a href="https://nodejs.org" target="_blank">以下の URL</a> を開きます (1)。そして、推奨されるnode.jsバージョンをダウンロードしてください。
-「」
+```
 https://nodejs.org
-「」
+```
 
 ![](images/install-node-1.png)
 
